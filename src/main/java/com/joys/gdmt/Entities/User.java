@@ -1,16 +1,18 @@
 package com.joys.gdmt.Entities;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
-import java.lang.reflect.Type;
 
 @Data
+@TableName("user")
 public class User {
-    @TableId(type = IdType.ASSIGN_UUID)
-    private String id;
+    @TableId
+    private Integer id;
     private String name;
     private String password;
-    private String organid;
+    private String email;
+    private String phone;
+    private Integer organid;
 }

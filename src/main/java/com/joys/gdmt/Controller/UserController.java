@@ -12,8 +12,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/User")
 public class UserController {
+
     @Autowired
     private UserMapper userMapper;
+
     @GetMapping("findAll")
     public List<User> findall(){
         return userMapper.selectList(null);
