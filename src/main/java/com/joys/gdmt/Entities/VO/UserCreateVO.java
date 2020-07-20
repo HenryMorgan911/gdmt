@@ -1,37 +1,14 @@
-package com.joys.gdmt.Entities;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+package com.joys.gdmt.Entities.VO;
 
 import java.util.List;
 
-
-@TableName("user")
-public class User {
-    @TableId(type = IdType.AUTO)
-    private Integer id;
-    private Integer organid;
+public class UserCreateVO {
     private String name;
     private String password;
     private String email;
     private String phone;
-
-    @TableField(exist = false, select = false)
+    private Integer organid;
     private List<Integer> dutyid;
-
-    public User() {
-    }
-
-    public User(Integer organid, String name, String password, String email, String phone, List<Integer> dutyid) {
-        this.organid = organid;
-        this.name = name;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
-        this.dutyid = dutyid;
-    }
 
     public List<Integer> getDutyid() {
         return dutyid;
@@ -39,15 +16,6 @@ public class User {
 
     public void setDutyid(List<Integer> dutyid) {
         this.dutyid = dutyid;
-    }
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
