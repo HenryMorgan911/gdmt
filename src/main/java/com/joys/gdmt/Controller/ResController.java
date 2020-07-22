@@ -34,8 +34,11 @@ public class ResController {
     void update(@RequestBody ResUpdateVO r) {
         Res res = mapper.selectById(r.getId());
         res.setName(r.getName());
+        if (r.getPid() == null) {
+            r.setPid(0);
+        }
         res.setPid(r.getPid());
-        System.out.println(res.getPid());
+        //System.out.println(res.getPid());
         mapper.updateById(res);
     }
 
