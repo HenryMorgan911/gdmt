@@ -11,6 +11,8 @@ class RoleMapperTest {
 
     @Test
     void test() {
-        mapper.DeleteRoleRes(3);
+        mapper.getresid(1).forEach(e -> {
+            System.out.println(e);
+        });
     }
 }

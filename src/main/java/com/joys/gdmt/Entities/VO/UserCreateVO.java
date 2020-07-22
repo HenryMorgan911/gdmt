@@ -1,21 +1,31 @@
 package com.joys.gdmt.Entities.VO;
 
-import java.util.List;
-
 public class UserCreateVO {
     private String name;
     private String password;
     private String email;
     private String phone;
     private Integer organid;
-    private List<Integer> dutyid;
+    private String duty;
 
-    public List<Integer> getDutyid() {
-        return dutyid;
+    public UserCreateVO(String name, String password, String email, String phone, Integer organid, String duty) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.organid = organid;
+        this.duty = duty;
     }
 
-    public void setDutyid(List<Integer> dutyid) {
-        this.dutyid = dutyid;
+    public UserCreateVO() {
+    }
+
+    public String getDuty() {
+        return duty;
+    }
+
+    public void setDuty(String duty) {
+        this.duty = duty;
     }
 
     public String getName() {

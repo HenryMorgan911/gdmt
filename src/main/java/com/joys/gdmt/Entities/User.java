@@ -5,8 +5,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
-import java.util.List;
-
 
 @TableName("user")
 public class User {
@@ -19,12 +17,9 @@ public class User {
     private String phone;
 
     @TableField(exist = false, select = false)
-    private List<Integer> dutyid;
+    private String dutyid;
 
-    public User() {
-    }
-
-    public User(Integer organid, String name, String password, String email, String phone, List<Integer> dutyid) {
+    public User(Integer organid, String name, String password, String email, String phone, String dutyid) {
         this.organid = organid;
         this.name = name;
         this.password = password;
@@ -33,14 +28,16 @@ public class User {
         this.dutyid = dutyid;
     }
 
-    public List<Integer> getDutyid() {
+    public String getDutyid() {
         return dutyid;
     }
 
-    public void setDutyid(List<Integer> dutyid) {
-        this.dutyid = dutyid;
+    public User() {
     }
 
+    public void setDutyid(String dutyid) {
+        this.dutyid = dutyid;
+    }
 
     public Integer getId() {
         return id;

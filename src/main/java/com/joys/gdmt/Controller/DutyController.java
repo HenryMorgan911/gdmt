@@ -1,8 +1,10 @@
 package com.joys.gdmt.Controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.joys.gdmt.Entities.Duty;
 import com.joys.gdmt.Entities.VO.DutyCreateVO;
 import com.joys.gdmt.Entities.VO.DutyVO;
+import com.joys.gdmt.Entities.VO.OrganVO;
 import com.joys.gdmt.Mapper.DutyMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,10 @@ public class DutyController {
         mapper.insert(duty);
     }
 
-    @DeleteMapping("/delete")
-    void delete(@RequestHeader Integer id) {
-        mapper.deleteById(id);
-        mapper.deleteUserDuty(id);
+    @PostMapping("/delete")
+    void delete(@RequestBody DutyVO d) {
+        mapper.deleteUserDuty(d.getId());
+        mapper.deleteById(d.getId());
     }
 
     @PostMapping("/update")
@@ -36,5 +38,13 @@ public class DutyController {
     @GetMapping("/list")
     List<DutyVO> List() {
         return mapper.dutylist();
+    }
+
+    @PostMapping("/getbyorgan")
+    List<Duty> Getlist(@RequestBody OrganVO o) {
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("organid", o.getId());
+        System.out.println(o.getId());
+        return mapper.selectList(wrapper);
     }
 }

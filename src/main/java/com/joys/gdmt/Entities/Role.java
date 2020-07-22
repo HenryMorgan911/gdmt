@@ -1,36 +1,50 @@
 package com.joys.gdmt.Entities;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
-import java.util.List;
+import java.util.Date;
 
 @TableName("role")
 public class Role {
     @TableField(exist = false, select = false)
-    List<Integer> resid;
+    String resid;
+    @TableField(fill = FieldFill.INSERT)
+    private Date createtime;
+
+    public Role(String resid, Integer id, String name) {
+        this.resid = resid;
+        this.id = id;
+        this.name = name;
+    }
+
+    public Role(String name) {
+        this.name = name;
+    }
+
+    public String getResid() {
+        return resid;
+    }
+
     @TableId(type = IdType.AUTO)
     private Integer id;
     private String name;
 
-    public Role(String name, List<Integer> resid) {
-        this.name = name;
+    public void setResid(String resid) {
         this.resid = resid;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
 
     public Role() {
     }
 
-    public List<Integer> getResid() {
-        return resid;
-    }
-
-    public void setResid(List<Integer> resid) {
-        this.resid = resid;
-    }
 
     public Integer getId() {
         return id;

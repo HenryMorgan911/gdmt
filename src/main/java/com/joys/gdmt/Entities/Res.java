@@ -1,10 +1,8 @@
 package com.joys.gdmt.Entities;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @TableName(value = "res")
@@ -15,6 +13,8 @@ public class Res {
     private Integer id;
     private String name;
     private Integer pid;
+    @TableField(fill = FieldFill.INSERT)
+    private Date createtime;
 
     public Res(String name, Integer pid) {
         this.name = name;

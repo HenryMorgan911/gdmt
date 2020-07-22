@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface DutyMapper extends BaseMapper<Duty> {
-    @Select("SELECT d.id,d.name,o.name AS organname,r.name AS rolename FROM duty d,organ o,role r WHERE d.organid=o.id AND d.roleid=r.id")
+    @Select("SELECT d.id,d.name,d.organid,o.name AS organname, d.roleid,r.name AS rolename FROM duty d,organ o,role r WHERE d.organid=o.id AND d.roleid=r.id")
     List<DutyVO> dutylist();
 
     @Select("DELETE FROM userduty WHERE dutyid = #{id}")

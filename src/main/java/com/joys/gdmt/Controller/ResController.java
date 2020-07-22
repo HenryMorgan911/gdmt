@@ -3,6 +3,8 @@ package com.joys.gdmt.Controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.joys.gdmt.Entities.Res;
 import com.joys.gdmt.Entities.VO.ResCreateVO;
+import com.joys.gdmt.Entities.VO.ResUpdateVO;
+import com.joys.gdmt.Entities.VO.ResVO;
 import com.joys.gdmt.Mapper.ResMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,19 +23,25 @@ public class ResController {
         mapper.insert(res);
     }
 
-    @DeleteMapping("delete")
-    void delete(@RequestHeader Integer id) {
-        mapper.deleteById(id);
+    @PostMapping("delete")
+    void delete(@RequestBody ResVO r) {
+        mapper.updateChildren(r.getId());
+        mapper.deleteRoleRes(r.getId());
+        mapper.deleteById(r.getId());
     }
 
     @PostMapping("update")
-    void update(@RequestBody Res res) {
+    void update(@RequestBody ResUpdateVO r) {
+        Res res = mapper.selectById(r.getId());
+        res.setName(r.getName());
+        res.setPid(r.getPid());
+        System.out.println(res.getPid());
         mapper.updateById(res);
     }
 
     @GetMapping("list")
-    List<Res> List() {
-        return mapper.selectList(null);
+    List<ResVO> List() {
+        return mapper.reslist();
     }
 
     @GetMapping("/tree")
